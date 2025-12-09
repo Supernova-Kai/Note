@@ -29,7 +29,7 @@ Query参数（也常称为`URL`参数、查询参数），是直接拼接在`URL
 
 # 注意事项
 
-- 空值处理：值为`null/undefined`的参数建议不拼接，避免传递key=null或key=undefined
+- 空值处理：值为`null/undefined`的参数建议不拼接，避免传递`key=null`或`key=undefined`
 - 编码一致性：前端用统一的`URL`编码方法处理参数，服务端需用对应解码方法还原
 - 大小写敏感：`Query`参数的键名通常大小写敏感（如`Page`和`page`视为不同键）
 - 特殊字符：键值出现特殊字符（中文、`&`、`=`等）需经过`URL`编码，避免破坏`URL`结构
