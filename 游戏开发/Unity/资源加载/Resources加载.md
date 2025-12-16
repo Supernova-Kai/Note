@@ -146,6 +146,7 @@ Sprite sprite = Resources.Load<Sprite>("Icon/icon1");
 Resources.UnloadAsset(sprite);
 ```
 
+---
 ### 卸载未使用的资源
 全局清理内存中所有未被代码引用的资源，可同步或者异步执行
 
@@ -186,6 +187,7 @@ public class ResourcesUnloadUnused : MonoBehaviour
 }
 ```
 
+---
 ### 查找内存中所有资源
 查找内存中所有指定类型的资源（包括未激活、隐藏的），用于调试 / 内存检测
 ```csharp
