@@ -90,20 +90,17 @@ foreach (string guid in spriteGuids)
 ---
 
 ### 资源刷新
-修改或者创建资源后，刷新引擎使修改生效
+修改或者创建资源后，刷新引擎
 
 **原型**
 ```csharp
 // 刷新所有资源
 public static void Refresh();
-
-// 指定方式刷新
-public static void Refresh(ImportAssetOptions options);
 ```
 **示例**
 ```csharp
 // 创建文件后刷新
 File.WriteAllText("Assets/Res/Text/new.txt", "test");
 AssetDatabase.Refresh();
-
 ```
+
