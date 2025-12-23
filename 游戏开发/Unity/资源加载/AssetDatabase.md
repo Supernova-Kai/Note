@@ -6,8 +6,8 @@
 - **仅编辑器生效：** 仅在**编辑器环境内可用**，无法在打包后的游戏中使用，所有相关代码q请用宏`UNITY_EDITOR`进行包裹，否则打包会报错
 ```csharp
 #if UNITY_EDITOR
-// AssetDatabase相关代码
-Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Res/Icon/icon1.png");
+    // AssetDatabase相关代码
+    Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Res/Icon/icon1.png");
 #endif
 ```
 - **无缓存机制：** 每次调用加载都会从硬盘读取，无内置缓存
@@ -62,6 +62,7 @@ foreach (string guid in guids)
 
 ### 查找资源
 通过条件查找资源（常用于编辑器工具）
+
 **原型**
 ```csharp
 // 通过筛选条件查找资源GUID
@@ -103,5 +104,6 @@ public static void Refresh(ImportAssetOptions options);
 ```csharp
 // 创建文件后刷新
 File.WriteAllText("Assets/Res/Text/new.txt", "test");
-AssetDatabase.Refresh(); // 刷新后才能加载该资源
+AssetDatabase.Refresh();
+
 ```
