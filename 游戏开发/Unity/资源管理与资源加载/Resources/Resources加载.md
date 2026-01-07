@@ -23,7 +23,14 @@
 - **包体大小：** 所有放在`Resources`文件夹下的资源，打包时都会包含在内，增大了安装包的体积
 - **不支持热更新：** `Resources`内的资源会成为安装包的一部分，无法通过热更新的方式进行更新，如果需要更新，只能通过下载最新的安装包，覆盖安装新包的方式来更新
 - **资源不会自动卸载：** 资源卸载必须手动管理，如果忘记卸载，容易造成内存泄漏
-- **无法分包：** 所有`Resources`资源打包后时一个整体，无法按需下载、卸载
+- **无法分包：** 所有`Resources`资源打包后时一个整体，无法按需下载、加载
+
+# 注意事项
+
+- **路径和文件名区分大小写：** 在`Unity`编辑器中，有一种假象，那就是`Resources`加载的路径是不区分大小写的，但是实际上，是否区分大小写是根据平台的，**不论是`Android`还是`ios`平台，都是严格区分大小写的**，所以在实际使用中，还是严格按大小写使用最好
+- **同名资源：** 由于`Unity`允许文件名相同但是类型不同的资源，所以使用`Load(path)`这种没有传入筛选类型的方法，可能会加载到不是我们想要的资源，尽量使用泛型方法
+
+- **正斜杠：** `Unity`中对于所有路径，都使用正斜杠（即使在Windows上）
 
 # 核心API
 ### 同步加载单个资源
@@ -120,11 +127,11 @@ public class ResourcesAsyncLoad : MonoBehaviour
 
 ```csharp
 // 非泛型
-public static Object[] LoadAll (string path);
+public static Object[] LoadAll (string path); // 没有筛选，即加载所有资源
 public static Object[] LoadAll (string path, Type systemTypeInstance);
 
 // 泛型
-public static T[] LoadAll<T>(string path)
+public static T[] LoadAll<T>(string path) // 加载该路径下所有T类型的
 ```
 ---
 
@@ -194,9 +201,3 @@ public static Object[] FindObjectsOfTypeAll (Type type);
 public static T[] FindObjectsOfTypeAll<T>();
 ```
 
-# 注意事项
-
-- **路径和文件名区分大小写：** 在`Unity`编辑器中，有一种假象，那就是`Resources`加载的路径是不区分大小写的，但是实际上，是否区分大小写是根据平台的，**不论是`Android`还是`ios`平台，都是严格区分大小写的**，所以在实际使用中，还是严格按大小写使用最好
-- **同名资源：** 由于`Unity`允许文件名相同但是类型不同的资源，所以使用`Load(path)`这种没有传入筛选类型的方法，可能会加载到不是我们想要的资源，尽量使用泛型方法
-
-- **正斜杠：** `Unity`中对于所有路径，都使用正斜杠（即使在Windows上）
